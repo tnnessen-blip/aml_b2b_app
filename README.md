@@ -1,36 +1,49 @@
 # AML Kontrollrom
 
-Flutter app for hvitvasking/AML triage across web, Windows, macOS, Linux, iOS and Android.
+Cross-platform Flutter app for AML / hvitvasking case triage across web, desktop and mobile.
 
-## Run
+## Open in VS Code
+
+1. Open this folder, `aml_b2b_app`, as the workspace root in VS Code.
+2. Install the recommended extensions.
+3. Run `Tasks: Run Task`.
+4. Run `Flutter pub get`.
+5. Start the app with `Flutter run web`, `Flutter run desktop`, or `Run and Debug`.
+
+## Common workflow
 
 ```powershell
 flutter pub get
+flutter analyze
+flutter test
 flutter run -d chrome
 ```
 
-For Windows desktop:
+For desktop:
 
 ```powershell
 flutter run -d windows
 ```
 
-## Test
+## What lives here
 
-```powershell
-flutter test
-```
+- `lib/` Flutter UI and app state
+- `test/` widget tests
+- `docs/` setup notes and roadmap
+- `scripts/flutterw.ps1` Flutter wrapper used by VS Code tasks
+- `prototype/pwa/` the earlier HTML/CSS/JS prototype kept as design reference
+- `.github/workflows/flutter-ci.yml` CI for analyze, test and web build
 
-## Getting Started
+## Work from another PC
 
-This project is a starting point for a Flutter application.
+See [docs/SETUP-OTHER-PC.md](docs/SETUP-OTHER-PC.md).
 
-A few resources to get you started if this is your first Flutter project:
+## Notes
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- The VS Code tasks resolve Flutter from `FLUTTER_ROOT`, PATH, `.fvm/flutter_sdk`, or common install locations such as `C:\Flutter`.
+- Machine-specific files such as `.dart_tool/`, `build/`, `android/local.properties`, and generated platform files are ignored in Git.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Flutter docs
+
+- [Install Flutter with VS Code](https://docs.flutter.dev/install/with-vs-code)
+- [Flutter desktop setup](https://docs.flutter.dev/platform-integration/desktop)

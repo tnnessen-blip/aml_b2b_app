@@ -1,0 +1,310 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Flutter pub get",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\flutterw.ps1",
+        "pub",
+        "get"
+      ],
+      "linux": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "pub",
+          "get"
+        ]
+      },
+      "osx": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "pub",
+          "get"
+        ]
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Flutter doctor",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\flutterw.ps1",
+        "doctor",
+        "-v"
+      ],
+      "linux": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "doctor",
+          "-v"
+        ]
+      },
+      "osx": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "doctor",
+          "-v"
+        ]
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Flutter analyze",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\flutterw.ps1",
+        "analyze"
+      ],
+      "linux": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "analyze"
+        ]
+      },
+      "osx": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "analyze"
+        ]
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Flutter test",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\flutterw.ps1",
+        "test"
+      ],
+      "linux": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "test"
+        ]
+      },
+      "osx": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "test"
+        ]
+      },
+      "group": "test",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Flutter run web",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\flutterw.ps1",
+        "run",
+        "-d",
+        "chrome"
+      ],
+      "linux": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "run",
+          "-d",
+          "chrome"
+        ]
+      },
+      "osx": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "run",
+          "-d",
+          "chrome"
+        ]
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Flutter build web",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\flutterw.ps1",
+        "build",
+        "web",
+        "--release"
+      ],
+      "linux": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "build",
+          "web",
+          "--release"
+        ]
+      },
+      "osx": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "build",
+          "web",
+          "--release"
+        ]
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Flutter run desktop",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\flutterw.ps1",
+        "run",
+        "-d",
+        "windows"
+      ],
+      "linux": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "run",
+          "-d",
+          "linux"
+        ]
+      },
+      "osx": {
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder}/scripts/flutterw.ps1",
+          "run",
+          "-d",
+          "macos"
+        ]
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+        "reveal": "always"
+      }
+    }
+  ]
+}

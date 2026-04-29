@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">AML Kontroll maskable</title>
+  <rect width="512" height="512" fill="#25211d"/>
+  <circle cx="256" cy="256" r="196" fill="#f5f2ec"/>
+  <path d="M256 94 135 146v97c0 78 49 149 121 175 72-26 121-97 121-175v-97L256 94Z" fill="#0f7c74"/>
+  <path d="m203 250 38 38 76-82" fill="none" stroke="#ffffff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="368" cy="144" r="42" fill="#b7433a"/>
+  <path d="M368 120v29" stroke="#ffffff" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="368" cy="171" r="9" fill="#ffffff"/>
+</svg>

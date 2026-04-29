@@ -1,0 +1,60 @@
+{
+  "name": "AML Kontrollrom",
+  "short_name": "AML Kontroll",
+  "description": "Cross-platform AML dashboard for varsler, KYC, transaksjoner og saksflyt.",
+  "lang": "no",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "browser"],
+  "orientation": "any",
+  "background_color": "#f5f2ec",
+  "theme_color": "#25211d",
+  "categories": ["business", "finance", "productivity"],
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/maskable-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/maskable-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Varsler",
+      "short_name": "Varsler",
+      "url": "./index.html#varsler",
+      "icons": [{ "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Rapporter",
+      "short_name": "Rapporter",
+      "url": "./index.html#rapporter",
+      "icons": [{ "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

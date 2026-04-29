@@ -27,7 +27,11 @@ flutter run -d windows
 
 ## What lives here
 
-- `lib/` Flutter UI and app state
+- `lib/app/` app entry and theme wiring
+- `lib/features/dashboard/` screens, state and widgets for the AML workspace
+- `lib/models/` shared domain models
+- `lib/data/` local demo data
+- `lib/theme/` shared color tokens
 - `test/` widget tests
 - `docs/` setup notes and roadmap
 - `scripts/flutterw.ps1` Flutter wrapper used by VS Code tasks

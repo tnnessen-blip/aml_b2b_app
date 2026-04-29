@@ -6,10 +6,10 @@
 - Keep demo data local while UX and workflow are shaped.
 - Use GitHub Actions for analysis, tests and web build.
 - Keep the repo self-contained so it works the same across VS Code, GitHub and other PCs.
+- Build on the new modular `features/`, `models/`, `data/` and `theme/` structure.
 
 ## Next
 
-- Split `lib/main.dart` into `features/`, `widgets/`, `models/` and `state/`.
 - Add persistence for cases, notes and assignments.
 - Add authentication and role-based views for analyst, MLRO and admin.
 - Connect real screening/KYC/transaction APIs behind repository interfaces.

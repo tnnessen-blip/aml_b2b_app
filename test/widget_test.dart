@@ -1,4 +1,4 @@
-import 'package:aml_b2b_app/main.dart';
+import 'package:aml_b2b_app/app/aml_kontroll_app.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

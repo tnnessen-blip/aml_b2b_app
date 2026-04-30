@@ -39,12 +39,14 @@ class _AppHomeState extends State<AppHome> {
           selectedCase: _controller.selectedCase,
           alertFilter: _controller.alertFilter,
           chartRange: _controller.chartRange,
+          activeWorkflowId: _controller.activeWorkflowId,
           activeAlerts: _controller.activeAlerts,
           activeDelta: _controller.activeDelta,
           searchController: _searchController,
           onSearchChanged: _controller.updateQuery,
           onAlertFilterChanged: _controller.updateAlertFilter,
           onChartRangeChanged: _controller.updateChartRange,
+          onWorkflowSelected: _controller.selectWorkflow,
           onSelectCase: _controller.selectCase,
           onEscalate: _controller.escalateSelectedCase,
           onClearRisk: _controller.clearSelectedCaseRisk,
@@ -92,12 +94,14 @@ class AppContent extends StatelessWidget {
     required this.selectedCase,
     required this.alertFilter,
     required this.chartRange,
+    required this.activeWorkflowId,
     required this.activeAlerts,
     required this.activeDelta,
     required this.searchController,
     required this.onSearchChanged,
     required this.onAlertFilterChanged,
     required this.onChartRangeChanged,
+    required this.onWorkflowSelected,
     required this.onSelectCase,
     required this.onEscalate,
     required this.onClearRisk,
@@ -111,12 +115,14 @@ class AppContent extends StatelessWidget {
   final AmlCase selectedCase;
   final String alertFilter;
   final String chartRange;
+  final String activeWorkflowId;
   final int activeAlerts;
   final String activeDelta;
   final TextEditingController searchController;
   final ValueChanged<String> onSearchChanged;
   final ValueChanged<String> onAlertFilterChanged;
   final ValueChanged<String> onChartRangeChanged;
+  final ValueChanged<String> onWorkflowSelected;
   final ValueChanged<String> onSelectCase;
   final VoidCallback onEscalate;
   final VoidCallback onClearRisk;
@@ -143,8 +149,10 @@ class AppContent extends StatelessWidget {
                   activeDelta: activeDelta,
                   alertFilter: alertFilter,
                   chartRange: chartRange,
+                  activeWorkflowId: activeWorkflowId,
                   onAlertFilterChanged: onAlertFilterChanged,
                   onChartRangeChanged: onChartRangeChanged,
+                  onWorkflowSelected: onWorkflowSelected,
                   onSelectCase: onSelectCase,
                   onEscalate: onEscalate,
                   onClearRisk: onClearRisk,

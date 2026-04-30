@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/demo_data.dart';
 import '../../../models/aml_case.dart';
 import '../../../models/aml_customer.dart';
 import '../../../models/transaction_event.dart';
+import '../widgets/automation_panels.dart';
 import '../widgets/panels.dart';
 import '../widgets/shared.dart';
 
@@ -15,8 +17,10 @@ class OverviewView extends StatelessWidget {
     required this.activeDelta,
     required this.alertFilter,
     required this.chartRange,
+    required this.activeWorkflowId,
     required this.onAlertFilterChanged,
     required this.onChartRangeChanged,
+    required this.onWorkflowSelected,
     required this.onSelectCase,
     required this.onEscalate,
     required this.onClearRisk,
@@ -31,8 +35,10 @@ class OverviewView extends StatelessWidget {
   final String activeDelta;
   final String alertFilter;
   final String chartRange;
+  final String activeWorkflowId;
   final ValueChanged<String> onAlertFilterChanged;
   final ValueChanged<String> onChartRangeChanged;
+  final ValueChanged<String> onWorkflowSelected;
   final ValueChanged<String> onSelectCase;
   final VoidCallback onEscalate;
   final VoidCallback onClearRisk;
@@ -45,10 +51,21 @@ class OverviewView extends StatelessWidget {
         final wide = constraints.maxWidth >= 1080;
         final medium = constraints.maxWidth >= 760;
         final priorityCases = cases.take(3).toList();
+        final workflowTasks = workflowTasksForAction(activeWorkflowId);
+        final registryComparisons = registryComparisonsForCase(selectedCase);
+        final ruleSuggestions = ruleSuggestionsForCase(selectedCase);
+        final reviewIssues = reviewIssuesForCase(selectedCase);
+        final documentStatuses = documentStatusesForCase(selectedCase);
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            WorkflowLauncherPanel(
+              actions: workflowActions,
+              selectedId: activeWorkflowId,
+              onSelected: onWorkflowSelected,
+            ),
+            const SizedBox(height: 16),
             MetricGrid(
               activeAlerts: activeAlerts,
               activeDelta: activeDelta,
@@ -64,6 +81,39 @@ class OverviewView extends StatelessWidget {
                     flex: 7,
                     child: Column(
                       children: [
+                        CustomerCasePanel(
+                          selectedCase: selectedCase,
+                          comparisons: registryComparisons,
+                          documents: documentStatuses,
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 4,
+                              child: WorkflowChecklistPanel(
+                                tasks: workflowTasks,
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              flex: 6,
+                              child: RuleEnginePanel(
+                                suggestions: ruleSuggestions,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        CaseQueuePanel(
+                          cases: filteredCases,
+                          filter: alertFilter,
+                          selectedId: selectedCase.id,
+                          onFilterChanged: onAlertFilterChanged,
+                          onSelectCase: onSelectCase,
+                        ),
+                        const SizedBox(height: 16),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -85,26 +135,28 @@ class OverviewView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 16),
-                        CaseQueuePanel(
-                          cases: filteredCases,
-                          filter: alertFilter,
-                          selectedId: selectedCase.id,
-                          onFilterChanged: onAlertFilterChanged,
-                          onSelectCase: onSelectCase,
-                        ),
                       ],
                     ),
                   ),
                   const SizedBox(width: 16),
                   SizedBox(
                     width: 360,
-                    child: SideStack(
-                      selectedCase: selectedCase,
-                      chartRange: chartRange,
-                      onEscalate: onEscalate,
-                      onClearRisk: onClearRisk,
-                      onAssign: onAssign,
+                    child: Column(
+                      children: [
+                        const IntegrationStatusPanel(items: integrationStatuses),
+                        const SizedBox(height: 16),
+                        ReviewIssuesPanel(issues: reviewIssues),
+                        const SizedBox(height: 16),
+                        DocumentationPanel(selectedCase: selectedCase),
+                        const SizedBox(height: 16),
+                        SideStack(
+                          selectedCase: selectedCase,
+                          chartRange: chartRange,
+                          onEscalate: onEscalate,
+                          onClearRisk: onClearRisk,
+                          onAssign: onAssign,
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -112,6 +164,49 @@ class OverviewView extends StatelessWidget {
             else
               Column(
                 children: [
+                  CustomerCasePanel(
+                    selectedCase: selectedCase,
+                    comparisons: registryComparisons,
+                    documents: documentStatuses,
+                  ),
+                  const SizedBox(height: 16),
+                  if (medium)
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: WorkflowChecklistPanel(
+                            tasks: workflowTasks,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: RuleEnginePanel(
+                            suggestions: ruleSuggestions,
+                          ),
+                        ),
+                      ],
+                    )
+                  else ...[
+                    WorkflowChecklistPanel(tasks: workflowTasks),
+                    const SizedBox(height: 16),
+                    RuleEnginePanel(suggestions: ruleSuggestions),
+                  ],
+                  const SizedBox(height: 16),
+                  CaseQueuePanel(
+                    cases: filteredCases,
+                    filter: alertFilter,
+                    selectedId: selectedCase.id,
+                    onFilterChanged: onAlertFilterChanged,
+                    onSelectCase: onSelectCase,
+                  ),
+                  const SizedBox(height: 16),
+                  const IntegrationStatusPanel(items: integrationStatuses),
+                  const SizedBox(height: 16),
+                  ReviewIssuesPanel(issues: reviewIssues),
+                  const SizedBox(height: 16),
+                  DocumentationPanel(selectedCase: selectedCase),
+                  const SizedBox(height: 16),
                   if (medium)
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,14 +236,6 @@ class OverviewView extends StatelessWidget {
                     const SizedBox(height: 16),
                     FlowPanel(range: chartRange, onRangeChanged: onChartRangeChanged),
                   ],
-                  const SizedBox(height: 16),
-                  CaseQueuePanel(
-                    cases: filteredCases,
-                    filter: alertFilter,
-                    selectedId: selectedCase.id,
-                    onFilterChanged: onAlertFilterChanged,
-                    onSelectCase: onSelectCase,
-                  ),
                   const SizedBox(height: 16),
                   SideStack(
                     selectedCase: selectedCase,
@@ -348,47 +435,36 @@ class ReportsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final escalated = cases.where((item) => item.status == 'Eskalert').length;
     final closed = cases.where((item) => item.status == 'Lavere risiko').length;
+    final stages = reportStagesForCase(selectedCase);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SectionTitle(
           eyebrow: 'Dokumentasjon',
-          title: 'Rapporter og revisjonsspor',
-          detail: 'Forbered STR/MT-rapportering, intern kontroll og styregrunnlag.',
+          title: 'Rapportering, revisjonsspor og oppf\u00f8lging',
+          detail: 'G\u00e5 fra intern vurdering til klargjort rapportutkast og videre oppf\u00f8lging i samme modul.',
         ),
         const SizedBox(height: 16),
         LayoutBuilder(
           builder: (context, constraints) {
-            final wide = constraints.maxWidth >= 980;
-            final summary = ReportSummary(
-              escalated: escalated,
-              closed: closed,
-              total: cases.length,
-            );
-            final draft = ReportDraftPanel(selectedCase: selectedCase);
-            final audit = const AuditTrailPanel();
+            final columns = constraints.maxWidth >= 1280
+                ? 4
+                : constraints.maxWidth >= 920
+                    ? 2
+                    : 1;
+            final width = (constraints.maxWidth - (columns - 1) * 16) / columns;
+            final panels = [
+              ReportSummary(escalated: escalated, closed: closed, total: cases.length),
+              ReportingModulePanel(selectedCase: selectedCase, stages: stages),
+              ReportDraftPanel(selectedCase: selectedCase),
+              const AuditTrailPanel(),
+            ];
 
-            if (wide) {
-              return Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(child: summary),
-                  const SizedBox(width: 16),
-                  Expanded(child: draft),
-                  const SizedBox(width: 16),
-                  Expanded(child: audit),
-                ],
-              );
-            }
-            return Column(
-              children: [
-                summary,
-                const SizedBox(height: 16),
-                draft,
-                const SizedBox(height: 16),
-                audit,
-              ],
+            return Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              children: panels.map((panel) => SizedBox(width: width, child: panel)).toList(),
             );
           },
         ),

@@ -6,6 +6,7 @@ void main() {
     await tester.pumpWidget(const AmlKontrollApp());
 
     expect(find.text('Operativ oversikt'), findsOneWidget);
+    expect(find.text('Hva pr\u00f8ver du \u00e5 gj\u00f8re?'), findsOneWidget);
     expect(find.text('Nordfjord Import AS'), findsWidgets);
     expect(find.text('AML-2048'), findsWidgets);
   });

@@ -49,7 +49,7 @@ class HeaderBar extends StatelessWidget {
         final title = const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Eyebrow('28. april 2026'),
+            Eyebrow('29. april 2026'),
             SizedBox(height: 4),
             Text(
               'Operativ oversikt',

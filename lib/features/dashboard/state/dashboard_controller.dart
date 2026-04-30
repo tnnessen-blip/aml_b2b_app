@@ -13,6 +13,7 @@ class DashboardController extends ChangeNotifier {
   String _alertFilter = 'Alle';
   String _chartRange = '24 t';
   String _query = '';
+  String _activeWorkflowId = workflowActions.first.id;
   int _activeAlerts = 184;
   String _activeDelta = '+14';
 
@@ -21,6 +22,7 @@ class DashboardController extends ChangeNotifier {
   String get alertFilter => _alertFilter;
   String get chartRange => _chartRange;
   String get query => _query;
+  String get activeWorkflowId => _activeWorkflowId;
   int get activeAlerts => _activeAlerts;
   String get activeDelta => _activeDelta;
 
@@ -66,6 +68,11 @@ class DashboardController extends ChangeNotifier {
 
   void updateChartRange(String value) {
     _chartRange = value;
+    notifyListeners();
+  }
+
+  void selectWorkflow(String workflowId) {
+    _activeWorkflowId = workflowId;
     notifyListeners();
   }
 

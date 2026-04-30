@@ -42,6 +42,11 @@ flutter run -d windows
 
 See [docs/SETUP-OTHER-PC.md](docs/SETUP-OTHER-PC.md).
 
+## Norway AML direction
+
+The current product direction for Norwegian AML automation is documented in
+[docs/NORWAY_AML_AUTOMATION.md](docs/NORWAY_AML_AUTOMATION.md).
+
 ## Notes
 
 - The VS Code tasks resolve Flutter from `FLUTTER_ROOT`, PATH, `.fvm/flutter_sdk`, or common install locations such as `C:\Flutter`.
